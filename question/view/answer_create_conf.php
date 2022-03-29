@@ -20,7 +20,7 @@
   if(!$question_id) {
     $err['question_id'] = '質問を選択し直してください';
   }
-
+  
   
   if(isset($_POST['a_comp'])){
 
