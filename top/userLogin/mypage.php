@@ -12,12 +12,14 @@ if (!$result) {
 }
 $login_user = $_SESSION['login_user'];
 
-//モーダル処理
 if (isset($_POST['mypage'])) {
-    //経験値取得処理
-    $user_exp = UserLogic::plusEXP();
-    $user_data = UserLogic::levelModal();
-    return;
+//モーダル表示の呼び込み
+$user_data = UserLogic::levelModal();
+var_dump($user_data);
+if (!$user_data) {
+  $err[] = 'レベル表示に失敗しました';
+  return;
+}
 }
 
 //画像情報の取得
@@ -30,7 +32,6 @@ $showicon = UserLogic::showIcon();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../css/mypage.css" />
     <link rel="stylesheet" type="text/css" href="../../css/top.css" />
     <link rel="stylesheet" href="../../level/level_anime.css">
@@ -48,9 +49,9 @@ $showicon = UserLogic::showIcon();
         <ul class="menu">
             <li class="top"><a href="login_top.php">TOPページ</a></li>
             <li><a href="../userEdit/edit_user.php">会員情報 編集</a></li>
-            <li><a href="#">TO DO LIST</a></li>
             <li><a href="../../question/view/qhistory.php">質問 履歴</a></li>
             <li><a href="../../">記事 履歴</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
             <li>
                 <form type="hidden" action="logout.php" method="POST">
 				    <input type="submit" name="logout" value="ログアウト" id="logout" style="text-align:left;">
@@ -59,23 +60,20 @@ $showicon = UserLogic::showIcon();
         </ul>
     </header>
     
-    <!--前回のレベルと変化があった際にのみレベルモーダルを表示させる-->
-    <?php if ($_SESSION['login_user']['level'] !== $_SESSION['login_user']['pre_level']): ?>
-        <!--モーダル-->
-        <div id="modal-content">
-            <p style="text-align:canter;"><?php require_once 'level_anime.php'; ?></p>
-	        <p><a id="modal-close" class="button-link" onclick="modal_onclick_close()" >CLOSE</a></p>
-        </div>
-        <!-- 2番目に表示されるモーダル（半透明な膜） -->
-        <div id="modal-overlay" ></div>
-        <!-- JavaScript -->
-        <script type="text/javascript">
-            function modal_onclick_close(){
-            document.getElementById("modal-content").style.display = "none";
-            document.getElementById("modal-overlay").style.display = "none";
-            }
-        </script>
-    <?php endif; ?>
+    <!--モーダル-->
+    <div id="modal-content">
+	    <p style="text-align:canter;"><?php require_once 'level_anime.php'; ?></p>
+	    <p><a id="modal-close" class="button-link" onclick="modal_onclick_close()" >CLOSE</a></p>
+    </div>
+    <!-- 2番目に表示されるモーダル（オーバーウエィ）半透明な膜 -->
+    <div id="modal-overlay" ></div>
+    <!-- JavaScript -->
+    <script type="text/javascript">
+        function modal_onclick_close(){
+        document.getElementById("modal-content").style.display = "none";
+        document.getElementById("modal-overlay").style.display = "none";
+        }
+    </script>
 
     <section class="wrapper">
         <div class="container">
@@ -92,12 +90,10 @@ $showicon = UserLogic::showIcon();
                     </div>
                     <!--ユーザーが登録した名前を表示-->
                     <div class="text">
-                        <p class="fw-bold">名前</p>
-                        <?php echo htmlspecialchars($login_user['name'], ENT_QUOTES, 'UTF-8'); ?>
+                        名前：<?php echo htmlspecialchars($login_user['name'], ENT_QUOTES, 'UTF-8'); ?>
                     </div>
                     <!--ユーザーの現レベルを表示-->
                     <div class="text">
-                        <p class="fw-bold">レベル</p>
                         Lv.<?php
                            if (isset($login_user['level'])) {
                                echo htmlspecialchars($login_user['level'], ENT_QUOTES, 'UTF-8'); 
@@ -106,13 +102,12 @@ $showicon = UserLogic::showIcon();
                            } ?>
                     </div>
                     <div class="text">
-                        <p class="fw-bold">コメント</p>
-                        <p class="text-sm-start text-break small"><?php
+                        コメント：<?php
                             if (isset($login_user['comment'])) {
                                echo htmlspecialchars($login_user['comment'], ENT_QUOTES, 'UTF-8'); 
                             } else {
                                echo 'Let us introduce yourself!';
-                            } ?></p>
+                            } ?>
                     </div>
                 </div>
             </div>
@@ -120,25 +115,11 @@ $showicon = UserLogic::showIcon();
     </section>
 
 	<!-- フッタ -->
-	<footer class="h-10">
-		<div class="footer-item text-center">
-			<h4>Q&A SITE</h4>
-			<ul class="nav nav-pills nav-fill">
-                <li class="nav-item">
-					<a class="nav-link small" href="#">記事</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link small" href="#">質問</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link small" href="#">本検索</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link small" href="#">お問い合わせ</a>
-				</li>
-			</ul>
-		</div>
-		<p class="text-center small mt-2">Copyright (c) HTMQ All Rights Reserved.</p>
-	</footer>
+    <footer>
+        <div class="">
+            <br><br><hr>
+	        <p class="text-center">Copyright (c) HTMQ All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

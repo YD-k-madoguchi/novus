@@ -6,7 +6,7 @@ require_once '../../core/DBconnect.php';
 class ArticleLogic
 {
     /**
-     * 特定ユーザーの記事を表示する
+     * 特定ユーザーの質問を表示する
      * @param int $user_id
      * @return bool $result
      */

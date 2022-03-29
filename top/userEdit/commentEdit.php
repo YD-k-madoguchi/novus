@@ -66,10 +66,10 @@ if (isset($_SESSION['commentEdit'])) {
                 <form action="../editConfirm/commentConfirm.php" method="POST">
                     <input type="hidden" name="formcheck" value="checked">
                     <div class="list">
-                        <!--ユーザーが登録したコメントを表示-->
+                        <!--ユーザーが登録した名前を表示-->
                         <div class="text">
                             <label for="comment" style="text-align:center">[comment]</label>
-                            <p><input id="editdetail" type="text" name="comment" style="height:150px; width:300px" value="<?php echo htmlspecialchars($login_user['comment'], ENT_QUOTES, 'UTF-8'); ?>"></p>
+                            <p><input id="editdetail" type="text" name="comment" value="<?php echo htmlspecialchars($login_user['comment'], ENT_QUOTES, 'UTF-8'); ?>"></p>
                         </div>
                         <br><br>
                         <a href="edit_user.php" id="back">戻る</a>

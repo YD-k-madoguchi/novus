@@ -23,13 +23,13 @@ if (isset($_POST['formcheck'])) {
     $name = filter_input(INPUT_POST, 'name');
     
     //バリデーション
-    $limit = 15;
+    $limit = 20;
     if(empty($_SESSION['nameEdit'])) {
         $err['name'] = '名前を入力してください';
     }
     // 文字数チェック
     if (mb_strlen($name) > $limit) {
-        $err['name'] = '15文字以内で入力してください';
+        $err['name'] = '12文字で入力してください';
     }
 }
 
