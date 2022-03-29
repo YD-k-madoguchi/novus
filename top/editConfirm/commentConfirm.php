@@ -23,6 +23,15 @@ if (!empty($_POST['formcheck'])) {
     $name = filter_input(INPUT_POST, 'comment');
 }
 
+//バリデーション
+$limit = 100;
+if(isset($_SESSION['commentEdit'])) {
+    // 文字数チェック
+    if (mb_strlen($name) > $limit) {
+    $err['comment'] = '100文字以内で入力してください';
+}
+}
+
 //エラーがなかった場合の処処理
 if (count($err) === 0 && (isset($_POST['check']))) {
     
@@ -85,7 +94,7 @@ if (count($err) === 0 && (isset($_POST['check']))) {
                         <div class="text">
                             <label for="comment">[Comment]</label>
                             <p><span name="comment" class="check-info"><?php echo htmlspecialchars($_SESSION['commentEdit'], ENT_QUOTES, 'UTF-8'); ?></span></p>
-                            <!--未記入時のエラーメッセージ表示-->
+                            <!--エラーメッセージ表示-->
                             <?php if (isset($err['comment'])) : ?>
                                 <p class="text-danger"><?php echo $err['comment']; ?></p>
                             <?php endif; ?>

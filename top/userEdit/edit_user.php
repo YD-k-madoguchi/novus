@@ -99,8 +99,8 @@ $_SESSION['edit'] = $_POST;
                                 } else { echo '&emsp;Introduce Yourself!'; }?>" disabled>
                                 <a class="edit" href="commentEdit.php" role="button" id="edit">&ensp;編集</a>
                         </div>
-                        <br><br>
                         <a class="edit" href="../userDelete/userDelete.php" role="button">ユーザー削除</a>
+                        <br><br>
                     </div>
                 </form>
             </div>
@@ -108,11 +108,25 @@ $_SESSION['edit'] = $_POST;
     </section>
 
 	<!-- フッタ -->
-    <footer>
-        <div class="">
-            <br><br><hr>
-	        <p class="text-center">Copyright (c) HTMQ All Rights Reserved.</p>
-        </div>
-    </footer>
+	<footer class="h-10">
+		<div class="footer-item text-center">
+			<h4>Q&A SITE</h4>
+			<ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+					<a class="nav-link small" href="#">記事</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link small" href="#">質問</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link small" href="#">本検索</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link small" href="#">お問い合わせ</a>
+				</li>
+			</ul>
+		</div>
+		<p class="text-center small mt-2">Copyright (c) HTMQ All Rights Reserved.</p>
+	</footer>
 </body>
 </html>

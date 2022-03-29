@@ -29,8 +29,13 @@
     
 
     //バリデーション
+    $limit = 15;
     if(!$_SESSION['signUp']['0']){
         $err['name'] = '名前を入力してください';
+    }
+    // 文字数チェック
+    if (mb_strlen($name) > $limit) {
+        $err['name'] = '15文字で入力してください';
     }
     if(!$_SESSION['signUp']['1']){
         $err['tel'] = '電話番号を入力してください';
