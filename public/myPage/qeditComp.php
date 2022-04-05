@@ -56,6 +56,7 @@ $question_id = $_SESSION['q_data']['question_id'];
 <body>
     <!--メニュー-->
     <header>
+<<<<<<< Updated upstream:public/myPage/qeditComp.php
         <div class="navtext-container">
             <div class="navtext">novus</div>
         </div>
@@ -71,6 +72,23 @@ $question_id = $_SESSION['q_data']['question_id'];
                 </form>
             </li>
         </ul>
+=======
+    <div class="navbar bg-dark text-white">
+            <div class="navtext h2" id="headerlogo">novus</div>
+			<ul class="nav justify-content-center">
+                <li class="nav-item"><form type="hidden" action="mypage.php" method="POST" name="mypage">
+			    	    <a class="nav-link small text-white" href="../myPage/index.php">マイページ</a>
+			    	    <input type="hidden">
+                    </form>
+                </li>
+			    <li id="li"><a class="nav-link active small text-white" href="../userLogin/home.php">TOPページ</a></li>
+                <li id="li"><a class="nav-link small text-white" href="../todo/index.php">TO DO LIST</a></li>
+                <li id="li"><a class="nav-link small text-white" href="../../public/myPage/qHistory.php">【履歴】質問</a></li>
+                <li id="li"><a class="nav-link small text-white" href="../../public/myPage/aHistory.php">【履歴】記事</a></li>
+                <li id="li"><a class="nav-link small text-white" href="<?php echo "logout.php?=user_id=".$login_user['user_id']; ?>">ログアウト</a></li>
+            </ul>
+		</div>
+>>>>>>> Stashed changes:public/question/qeditComp.php
     </header>
 
     <!--コンテンツ-->
