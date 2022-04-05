@@ -441,8 +441,6 @@ class QuestionLogic
         $stmt = connect()->prepare($sql);
         // SQL実行
         $result = $stmt-> execute($arr);
-        $data = $stmt->fetch();
-
         // セッション変数の一部消去
         $_SESSION['a_data']['message'] = null;
 
